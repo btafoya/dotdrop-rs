@@ -1,0 +1,34 @@
+[package]
+name = "dotdrop"
+version = "1.17.0"
+edition = "2024"
+description = "Save your dotfiles once, deploy them everywhere (Rust port of dotdrop)"
+license = "GPL-3.0-only"
+rust-version = "1.87"
+
+[[bin]]
+name = "dotdrop"
+path = "src/main.rs"
+
+[dependencies]
+anyhow = "1"
+clap = { version = "4", features = ["derive", "env"] }
+glob = "0.3"
+indexmap = { version = "2", features = ["serde"] }
+minijinja = { version = "2", features = ["custom_syntax", "loader", "preserve_order", "loop_controls", "json", "unicode"] }
+minijinja-contrib = { version = "2", features = ["pycompat"] }
+nix = { version = "0.31", features = ["fs", "hostname", "user"] }
+regex = "1"
+serde = { version = "1", features = ["derive"] }
+serde_yaml_ng = "0.10"
+serde_json = "1"
+tempfile = "3"
+thiserror = "2"
+toml = { version = "1", features = ["preserve_order"] }
+
+
+
+
+[profile.release]
+lto = true
+strip = true
